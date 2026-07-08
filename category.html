@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نكهة زمان | تصنيف المنتجات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&family=Cairo:wght@300;400;500;600;700;800&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #F6EFDD;
+    --milk: #FFFDF8;
+    --olive-dark: #2E3524;
+    --olive: #4C5A3A;
+    --brass: #A9782F;
+    --brass-light: #C79A4B;
+    --burgundy: #6E2430;
+    --ink: #2A2620;
+    --line: rgba(46,53,36,0.16);
+    --shadow: 0 12px 30px rgba(42,38,32,0.12);
+    --radius-card: 14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Cairo', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Aref Ruqaa', serif;
+    font-weight:700;
+    color:var(--olive-dark);
+  }
+
+  .eyebrow{
+    font-family:'Markazi Text', serif;
+    font-size:1.15rem;
+    letter-spacing:.04em;
+    color:var(--brass);
+    font-weight:600;
+  }
+
+  a{color:inherit;}
+
+  /* ---------- texture background ---------- */
+  .grain{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.05;
+    z-index:2;
+    background-image:radial-gradient(circle, #000 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  /* ---------- header / nav ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(246,239,221,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:14px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .brand-seal{
+    width:46px;height:46px;
+    border-radius:50%;
+    background:var(--milk);
+    color:var(--cream);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Aref Ruqaa',serif;
+    font-size:1.1rem;
+    border:2px solid var(--brass);
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .brand-seal img{width:100%;height:100%;object-fit:cover;}
+  .brand-name{
+    font-family:'Aref Ruqaa', serif;
+    font-size:1.5rem;
+    line-height:1;
+    color:var(--olive-dark);
+  }
+  .brand-name small{
+    display:block;
+    font-family:'Markazi Text', serif;
+    font-size:.85rem;
+    color:var(--brass);
+    font-weight:600;
+    margin-top:2px;
+  }
+  nav ul{
+    display:flex;
+    gap:28px;
+    list-style:none;
+    margin:0;padding:0;
+    font-size:.98rem;
+  }
+  nav a{
+    text-decoration:none;
+    color:var(--ink);
+    position:relative;
+    padding-bottom:4px;
+  }
+  nav a:after{
+    content:"";
+    position:absolute;
+    right:0;left:0;bottom:0;
+    height:2px;
+    background:var(--brass);
+    transform:scaleX(0);
+    transform-origin:right;
+    transition:transform .3s ease;
+  }
+  nav a:hover:after{transform:scaleX(1);}
+  .nav-toggle{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    max-width:1180px;
+    margin:0 auto;
+    padding:70px 28px 40px;
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero-copy .eyebrow{display:block;margin-bottom:14px;}
+  .hero h1{
+    font-size:3.4rem;
+    line-height:1.15;
+    margin:0 0 18px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--burgundy);
+  }
+  .hero p{
+    font-size:1.15rem;
+    line-height:1.9;
+    color:#4a463c;
+    max-width:46ch;
+    margin:0 0 28px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:100px;
+    font-size:1rem;
+    font-weight:700;
+    text-decoration:none;
+    border:2px solid transparent;
+    transition:all .25s ease;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--olive-dark);
+    color:var(--milk);
+  }
+  .btn-primary:hover{background:var(--burgundy);}
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--olive-dark);
+    color:var(--olive-dark);
+  }
+  .btn-ghost:hover{background:var(--olive-dark); color:var(--milk);}
+
+  .hero-visual{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-seal{
+    position:relative;
+    width:100%;
+    max-width:420px;
+    border-radius:50%;
+    overflow:hidden;
+    aspect-ratio:1/1;
+    box-shadow: var(--shadow);
+    border: 6px solid var(--milk);
+    outline: 2px solid var(--line);
+  }
+  .hero-seal img{
+    width:100%;height:100%;object-fit:cover;
+  }
+  .hero-badge{
+    position:absolute;
+    bottom:-18px;
+    right:-18px;
+    width:110px;height:110px;
+    background:var(--burgundy);
+    color:var(--milk);
+    border-radius:50%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'Aref Ruqaa', serif;
+    font-size:.95rem;
+    line-height:1.25;
+    border:3px solid var(--brass-light);
+    box-shadow:var(--shadow);
+  }
+
+  /* ---------- marquee strip ---------- */
+  .strip{
+    background:var(--olive-dark);
+    color:var(--cream);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:12px 0;
+    border-top:1px solid rgba(0,0,0,.2);
+    border-bottom:1px solid rgba(0,0,0,.2);
+  }
+  .strip-track{
+    display:inline-flex;
+    gap:40px;
+    animation:scroll 28s linear infinite;
+    font-family:'Markazi Text', serif;
+    font-size:1.2rem;
+  }
+  .strip-track span{opacity:.9;}
+  .strip-track span:before{content:"✦"; margin-left:10px; color:var(--brass-light);}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- about ---------- */
+  .about{
+    max-width:1180px;
+    margin:0 auto;
+    padding:80px 28px;
+    display:grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap:50px;
+    align-items:center;
+  }
+  .about-gallery{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:14px;
+  }
+  .about-gallery img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:var(--radius-card);
+    box-shadow:var(--shadow);
+  }
+  .about-gallery .tall{grid-row: span 2; height:100%;}
+  .about-gallery div img{height:150px;}
+  .about-gallery .tall img{height:100%;}
+
+  .about-copy h2{
+    font-size:2.3rem;
+    margin:0 0 18px;
+  }
+  .about-copy p{
+    font-size:1.08rem;
+    line-height:1.95;
+    color:#4a463c;
+    margin:0 0 16px;
+  }
+  .stats{
+    display:flex;
+    gap:34px;
+    margin-top:30px;
+    flex-wrap:wrap;
+  }
+  .stat b{
+    display:block;
+    font-family:'Aref Ruqaa', serif;
+    font-size:2rem;
+    color:var(--burgundy);
+  }
+  .stat span{
+    font-size:.92rem;
+    color:#5c574b;
+  }
+
+  /* ---------- menu ---------- */
+  .menu-section{
+    max-width:1180px;
+    margin:0 auto;
+    padding:40px 28px 100px;
+  }
+  .menu-head{
+    text-align:center;
+    margin-bottom:50px;
+  }
+  .menu-head h2{
+    font-size:2.6rem;
+    margin:10px 0 12px;
+  }
+  .menu-head p{
+    color:#5c574b;
+    font-size:1.05rem;
+    max-width:60ch;
+    margin:0 auto;
+  }
+
+  .cat-tabs{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:46px;
+  }
+  .cat-tab{
+    padding:10px 22px;
+    border-radius:100px;
+    border:1.5px solid var(--olive-dark);
+    background:transparent;
+    color:var(--olive-dark);
+    font-family:'Cairo',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+    transition:all .2s ease;
+  }
+  .cat-tab.active, .cat-tab:hover{
+    background:var(--olive-dark);
+    color:var(--milk);
+  }
+
+  .category-block{
+    margin-bottom:60px;
+  }
+  .category-title{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  .category-title h3{
+    font-size:1.8rem;
+    margin:0;
+    white-space:nowrap;
+  }
+  .category-title .rule{
+    flex:1;
+    height:1px;
+    background:repeating-linear-gradient(to left, var(--brass) 0 6px, transparent 6px 12px);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap:26px;
+  }
+
+  /* ---------- شبكة تصنيفات المنتجات (كل تصنيف بصفحة لحاله) ---------- */
+  .cat-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap:26px;
+  }
+  .cat-tile{
+    display:flex;
+    flex-direction:column;
+    background:var(--milk);
+    border-radius:var(--radius-card);
+    overflow:hidden;
+    box-shadow: 0 6px 18px rgba(42,38,32,0.08);
+    border:1px solid var(--line);
+    text-decoration:none;
+    color:inherit;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .cat-tile:hover{
+    transform:translateY(-6px);
+    box-shadow: var(--shadow);
+  }
+  .cat-tile-img{
+    position:relative;
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:#eee5cd;
+  }
+  .cat-tile-img img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .cat-tile:hover .cat-tile-img img{transform:scale(1.07);}
+  .cat-tile-body{
+    padding:16px 18px 20px;
+    text-align:center;
+  }
+  .cat-tile-body h3{
+    margin:0 0 6px;
+    font-size:1.35rem;
+    color:var(--olive-dark);
+  }
+  .cat-tile-body span{
+    font-family:'Markazi Text', serif;
+    font-size:1rem;
+    color:var(--brass);
+    font-weight:600;
+  }
+  body.nz-dark .cat-tile{background:#252819; border-color:rgba(255,255,255,.08);}
+  body.nz-dark .cat-tile-body h3{color:#f2ead4;}
+
+  .card{
+    background:var(--milk);
+    border-radius:var(--radius-card);
+    overflow:hidden;
+    box-shadow: 0 6px 18px rgba(42,38,32,0.08);
+    border:1px solid var(--line);
+    transition: transform .3s ease, box-shadow .3s ease;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    box-shadow: var(--shadow);
+  }
+  .card-img{
+    position:relative;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:#eee5cd;
+  }
+  .card-img img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .card:hover .card-img img{transform:scale(1.07);}
+  .price-seal{
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    background:var(--olive-dark);
+    color:var(--milk);
+    border-radius:50%;
+    width:58px;height:58px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-family:'Aref Ruqaa', serif;
+    border:2px solid var(--brass-light);
+    box-shadow:0 4px 10px rgba(0,0,0,.25);
+  }
+  .price-seal b{font-size:1.05rem; line-height:1;}
+  .price-seal small{font-size:.6rem; opacity:.85;}
+  .price-seal-ask{background:var(--burgundy);}
+  .price-seal-ask b{font-size:1.3rem;}
+
+  .no-photo{
+    width:100%;height:100%;
+    display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg, #eee5cd 0%, #e3d7b4 100%);
+  }
+  .no-photo span{
+    font-family:'Aref Ruqaa', serif;
+    font-size:3rem;
+    color:var(--brass);
+    opacity:.6;
+  }
+
+  .extra-note{
+    text-align:center;
+    color:#8a6d3b;
+    background:#fbf4e0;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px 18px;
+    font-size:.9rem;
+    max-width:60ch;
+    margin:0 auto 26px;
+  }
+
+  .card-body{
+    padding:16px 18px 20px;
+  }
+  .card-body h4{
+    margin:0 0 6px;
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    font-size:1.08rem;
+    color:var(--ink);
+  }
+  .card-body p{
+    margin:0;
+    font-size:.86rem;
+    color:#6b6656;
+    line-height:1.6;
+  }
+
+  /* ---------- footer cta ---------- */
+  .cta-band{
+    background:var(--burgundy);
+    color:var(--milk);
+    padding:70px 28px;
+    text-align:center;
+  }
+  .cta-band h2{
+    color:var(--milk);
+    font-size:2.4rem;
+    margin:0 0 16px;
+  }
+  .cta-band p{
+    font-size:1.05rem;
+    max-width:52ch;
+    margin:0 auto 30px;
+    opacity:.92;
+  }
+  .cta-band .btn-primary{
+    background:var(--brass-light);
+    color:var(--ink);
+  }
+  .cta-band .btn-primary:hover{background:var(--milk);}
+
+  footer{
+    background:var(--olive-dark);
+    color:var(--cream);
+    padding:50px 28px 26px;
+  }
+  .footer-wrap{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap:40px;
+  }
+  .footer-brand .brand-name{color:var(--cream);}
+  .footer-brand p{
+    color:#c9c8bd;
+    line-height:1.8;
+    font-size:.92rem;
+    max-width:38ch;
+    margin-top:14px;
+  }
+  footer h5{
+    font-family:'Cairo',sans-serif;
+    font-size:1rem;
+    margin:0 0 16px;
+    color:var(--brass-light);
+  }
+  footer ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
+  footer a{text-decoration:none; color:#dedcce; font-size:.92rem;}
+  footer a:hover{color:var(--brass-light);}
+  .footer-bottom{
+    max-width:1180px;
+    margin:40px auto 0;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.12);
+    text-align:center;
+    font-size:.82rem;
+    color:#a9a999;
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px){
+    nav ul{display:none;}
+    .hero{grid-template-columns:1fr; padding-top:40px;}
+    .hero h1{font-size:2.5rem;}
+    .about{grid-template-columns:1fr;}
+    .footer-wrap{grid-template-columns:1fr; text-align:center;}
+    footer ul{align-items:center;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .strip-track{animation:none;}
+    *{transition:none !important;}
+  }
+
+  :focus-visible{
+    outline: 3px solid var(--brass);
+    outline-offset: 2px;
+  }
+
+  /* ---------- إعدادات المستخدم: الوضع الليلي ---------- */
+  body.nz-dark{
+    background:#1b1d16;
+    color:#e9e6da;
+  }
+  body.nz-dark h1, body.nz-dark h2, body.nz-dark h3, body.nz-dark .display{color:#f2ead4;}
+  body.nz-dark header{background:rgba(27,29,22,0.92); border-bottom-color:rgba(255,255,255,.1);}
+  body.nz-dark nav a{color:#e9e6da;}
+  body.nz-dark .hero p, body.nz-dark .about-copy p, body.nz-dark .menu-head p{color:#c7c3b2;}
+  body.nz-dark .card{background:#252819; border-color:rgba(255,255,255,.08);}
+  body.nz-dark .card-body h4{color:#e9e6da;}
+  body.nz-dark .btn-ghost{border-color:#e9e6da; color:#e9e6da;}
+  body.nz-dark .btn-ghost:hover{background:#e9e6da; color:#1b1d16;}
+  body.nz-dark .cat-tab{border-color:#e9e6da; color:#e9e6da;}
+  body.nz-dark footer, body.nz-dark .strip{background:#111308;}
+
+  /* ---------- إعدادات المستخدم: حجم الخط ---------- */
+  body.nz-font-small{font-size:14px;}
+  body.nz-font-medium{font-size:16px;}
+  body.nz-font-large{font-size:19px;}
+
+  /* ---------- زر الإعدادات ---------- */
+  .settings-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:40px;height:40px;
+    border-radius:50%;
+    border:1.5px solid var(--olive-dark);
+    color:var(--olive-dark);
+    text-decoration:none;
+    font-size:1.15rem;
+    transition:all .2s ease;
+    flex-shrink:0;
+  }
+  .settings-link:hover{background:var(--olive-dark); color:var(--milk);}
+  .nav-wrap{gap:16px;}
+
+  /* ---------- عناصر خاصة بصفحة تصنيف واحد ---------- */
+  .cat-page-head{
+    max-width:1180px;
+    margin:0 auto;
+    padding:50px 28px 10px;
+  }
+  .breadcrumb{
+    font-family:'Markazi Text', serif;
+    font-size:1.05rem;
+    color:var(--brass);
+    margin-bottom:18px;
+  }
+  .breadcrumb a{text-decoration:none; color:var(--olive-dark); font-weight:600;}
+  .breadcrumb a:hover{color:var(--burgundy);}
+  .cat-page-head h1{
+    font-size:2.6rem;
+    margin:6px 0 10px;
+  }
+  .cat-page-head .count{
+    color:#5c574b;
+    font-size:1.02rem;
+  }
+  .cat-banner{
+    max-width:1180px;
+    margin:0 auto 10px;
+    padding:0 28px;
+  }
+  .cat-banner img{
+    width:100%;
+    max-height:320px;
+    object-fit:cover;
+    border-radius:var(--radius-card);
+    box-shadow:var(--shadow);
+    display:block;
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:22px;
+    text-decoration:none;
+    color:var(--olive-dark);
+    font-weight:700;
+    border:2px solid var(--olive-dark);
+    border-radius:100px;
+    padding:12px 24px;
+    transition:all .25s ease;
+  }
+  .back-link:hover{background:var(--olive-dark); color:var(--milk);}
+  body.nz-dark .back-link{border-color:#e9e6da; color:#e9e6da;}
+  body.nz-dark .back-link:hover{background:#e9e6da; color:#1b1d16;}
+  body.nz-dark .breadcrumb a{color:#e9e6da;}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="brand-seal"><img data-nz="logo" src="logo.jpeg" alt="نكهة زمان"></div>
+      <div class="brand-name"><span data-nz="storeName">نكهة زمان</span>
+        <small data-nz="tagline">ألبان ومشتقات حليب بلدية</small>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html#about">قصتنا</a></li>
+        <li><a href="index.html#menu">القائمة</a></li>
+        <li><a href="index.html#contact">تواصل معنا</a></li>
+      </ul>
+    </nav>
+    <a href="settings.html" class="settings-link" title="الإعدادات" aria-label="الإعدادات">⚙</a>
+  </div>
+</header>
+
+<section class="cat-page-head">
+  <div class="breadcrumb"><a href="index.html#menu">القائمة</a> ‹ <span id="nz-cat-name">...</span></div>
+  <h1 id="nz-cat-title">...</h1>
+  <p class="count" id="nz-cat-count"></p>
+</section>
+
+<div class="cat-banner" id="nz-cat-banner" style="display:none;">
+  <img id="nz-cat-banner-img" src="" alt="">
+</div>
+
+<section class="menu-section" id="menu">
+  <div id="nz-cat-content">
+    <p style="text-align:center;color:#8a6d3b;">جاري تحميل المنتجات...</p>
+  </div>
+  <div style="text-align:center;">
+    <a href="index.html#menu" class="back-link">↩ رجوع لكل التصنيفات</a>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <h2>جاهزين لطلبك</h2>
+  <p>تواصل معنا عبر الهاتف أو واتساب وخلي طلبك يوصلك طازج لباب البيت.</p>
+  <a data-nz="phoneHref" href="tel:0789598299" class="btn btn-primary">اتصل الآن</a>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <div class="brand-name" data-nz="storeName">نكهة زمان</div>
+      <p>دكان ألبان ومشتقات حليب بلدية، بنكهة أصيلة ما بتتغير من زمان لهلق.</p>
+    </div>
+    <div>
+      <h5>روابط سريعة</h5>
+      <ul>
+        <li><a href="index.html#about">قصتنا</a></li>
+        <li><a href="index.html#menu">القائمة</a></li>
+        <li><a href="index.html#contact">تواصل معنا</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>تواصل معنا</h5>
+      <ul>
+        <li>هاتف: <span data-nz="phone">0789598299</span></li>
+        <li>واتساب: <span data-nz="whatsapp">0789598299</span></li>
+        <li><a data-nz="address" href="https://maps.app.goo.gl/VtVppjY5Rxrx6kyc6">الأردن عمان ماركا الشمالية نزول دير لاتين مقابل الجدع</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span data-nz="storeName">نكهة زمان</span> — جميع الحقوق محفوظة</div>
+</footer>
+
+<script src="products-data.js"></script>
+<script src="site-settings.js"></script>
+<script>
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  function getCategoryFromUrl(){
+    const params = new URLSearchParams(window.location.search);
+    return (params.get('c') || '').trim();
+  }
+
+  // صورة ثابتة مخصصة لهاد النوع (إذا موجودة)؛ إذا فضيت، منستخدم صورة أول منتج تلقائيًا
+  const NZ_FIXED_COVER = null;
+
+  function renderCategoryPage(){
+    const requestedCat = getCategoryFromUrl();
+    const products = nzGetProducts().filter(p => !p.hidden);
+
+    const items = products.filter(p => {
+      const key = String(p.categoryName || p.category || 'أخرى').trim();
+      return key === requestedCat;
+    });
+
+    document.title = 'نكهة زمان | ' + (requestedCat || 'تصنيف المنتجات');
+    document.getElementById('nz-cat-name').textContent = requestedCat || 'تصنيف غير معروف';
+    document.getElementById('nz-cat-title').textContent = requestedCat || 'تصنيف غير معروف';
+
+    const contentEl = document.getElementById('nz-cat-content');
+    const countEl = document.getElementById('nz-cat-count');
+
+    if(!requestedCat || items.length === 0){
+      countEl.textContent = '';
+      contentEl.innerHTML = '<p style="text-align:center;color:#8a6d3b;">ما لقينا منتجات لهاد التصنيف حاليًا.</p>';
+      document.getElementById('nz-cat-banner').style.display = 'none';
+      return;
+    }
+
+    countEl.textContent = items.length + ' صنف متوفر';
+
+    // بانر الصورة: صورة ثابتة مخصصة إذا موجودة، وإلا صورة أول منتج بهاد النوع
+    const bannerSrc = NZ_FIXED_COVER || (items.find(p => p.img) || {}).img;
+    const bannerEl = document.getElementById('nz-cat-banner');
+    const bannerImgEl = document.getElementById('nz-cat-banner-img');
+    if(bannerSrc){
+      bannerImgEl.src = bannerSrc;
+      bannerImgEl.alt = requestedCat;
+      bannerEl.style.display = '';
+    } else {
+      bannerEl.style.display = 'none';
+    }
+
+    const cards = items.map(p => `
+      <article class="card">
+        <div class="card-img">
+          <img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.alt||p.name)}" loading="lazy">
+          <div class="price-seal"><b>${escapeHtml(p.price)}</b><small>${escapeHtml(p.unit||'د.أ/كغ')}</small></div>
+        </div>
+        <div class="card-body"><h4>${escapeHtml(p.name)}</h4></div>
+      </article>
+    `).join('');
+
+    contentEl.innerHTML = `<div class="grid">${cards}</div>`;
+  }
+
+  NZ_READY.then(() => {
+    nzApplySiteSettings(document);
+    nzApplyPrefs(document);
+    renderCategoryPage();
+  }).catch((err) => {
+    console.error('cloud init failed unexpectedly', err);
+    renderCategoryPage();
+  });
+
+  window.addEventListener('storage', (e) => {
+    if(e.key && e.key.startsWith('nz_')){
+      nzApplySiteSettings(document);
+      nzApplyPrefs(document);
+      renderCategoryPage();
+    }
+  });
+</script>
+
+</body>
+</html>
