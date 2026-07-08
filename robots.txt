@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://nkhet-zman.github.io/meno/sitemap.xml
