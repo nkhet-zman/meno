@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>الإعدادات | نكهة زمان</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&family=Cairo:wght@300;400;500;600;700;800&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500;600;700&amp;family=Cairo:wght@300;400;500;600;700;800&amp;family=Aref+Ruqaa:wght@400;700&amp;display=swap" rel="stylesheet"/>
 <style>
   :root{
     --cream: #F6EFDD;
@@ -247,164 +248,146 @@
   body.nz-high-contrast .icon-btn{background:#fff; border:2px solid #000; color:#000;}
   body.nz-high-contrast .line, body.nz-high-contrast .rule{background:#000 !important;}
 </style>
-</head>
+<meta content="نكهة زمان متجر متخصص بالالبان البلدية والاجبان والمخللات والمؤن والسلطات والمنتجات الغذائية." name="description"/><meta content="index, follow" name="robots"/><link href="https://nkhet-zman.github.io/meno/" rel="canonical"/><script type="application/ld+json">{"@context":"https://schema.org","@type":"GroceryStore","name":"نكهة زمان","url":"https://nkhet-zman.github.io/meno/"}</script></head>
 <body>
-
 <header>
-  <div class="nav-wrap">
-    <div class="brand">
-      <div class="brand-seal"><img data-nz="logo" src="logo.jpeg" alt="نكهة زمان"></div>
-      <div class="brand-name" data-nz="storeName">نكهة زمان</div>
-    </div>
-    <a href="index.html" class="back-link">→ رجوع للموقع</a>
-  </div>
+<div class="nav-wrap">
+<div class="brand">
+<div class="brand-seal"><img alt="نكهة زمان" data-nz="logo" src="logo.jpeg"/></div>
+<div class="brand-name" data-nz="storeName">نكهة زمان</div>
+</div>
+<a class="back-link" href="index.html">→ رجوع للموقع</a>
+</div>
 </header>
-
 <div class="page-head">
-  <span class="eyebrow">لوحة التحكم</span>
-  <h1>الإعدادات</h1>
-  <p>من هون بتقدر تخصص شكل الموقع (الألوان، حجم الخط، اللغة)، وتدير المنتجات والأسعار.</p>
+<span class="eyebrow">لوحة التحكم</span>
+<h1>الإعدادات</h1>
+<p>من هون بتقدر تخصص شكل الموقع (الألوان، حجم الخط، اللغة)، وتدير المنتجات والأسعار.</p>
 </div>
-
 <div class="wrap">
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="prefs">🎨 الإعدادات</button>
-    <button class="tab-btn" data-tab="admin">🔐 لوحة المنتجات</button>
-  </div>
-
-  <div class="content">
-
-    <!-- ============ تبويب: الإعدادات (تفضيلات العرض) ============ -->
-    <div class="panel active" id="panel-prefs">
-      <div class="card-box">
-        <h2>تفضيلات العرض</h2>
-        <p class="sub">هاي الإعدادات خاصة فيك وبتنحفظ على هالمتصفح بس.</p>
-
-        <div class="pref-row">
-          <div class="pref-info">
-            <b>الوضع الليلي</b>
-            <span>خلفية داكنة مريحة للعين وقت الليل</span>
-          </div>
-          <label class="switch">
-            <input type="checkbox" id="pref-dark" onchange="savePrefsFromUI()">
-            <span class="slider-toggle"></span>
-          </label>
-        </div>
-
-        <div class="pref-row">
-          <div class="pref-info">
-            <b>التباين العالي</b>
-            <span>ألوان أوضح وأكثر تباينًا لسهولة القراءة</span>
-          </div>
-          <label class="switch">
-            <input type="checkbox" id="pref-contrast" onchange="savePrefsFromUI()">
-            <span class="slider-toggle"></span>
-          </label>
-        </div>
-
-        <div class="pref-row">
-          <div class="pref-info">
-            <b>حجم الخط</b>
-            <span>كبّر أو صغّر حجم النص بكل الموقع</span>
-          </div>
-          <div class="seg" id="font-seg">
-            <button data-size="small" onclick="setFontSize('small')">صغير</button>
-            <button data-size="medium" onclick="setFontSize('medium')">متوسط</button>
-            <button data-size="large" onclick="setFontSize('large')">كبير</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ تبويب: لوحة المنتجات (أدمن) ============ -->
-    <div class="panel" id="panel-admin">
-
-      <div class="card-box" id="admin-lock">
-        <div class="lock-box">
-          <div class="icon">🔒</div>
-          <h2>دخول الأدمن</h2>
-          <p class="sub">هاد القسم محمي — لإدارة المنتجات والأسعار لازم كلمة السر.</p>
-          <div class="field">
-            <input type="text" id="admin-pass-input" placeholder="كلمة السر" onkeydown="if(event.key==='Enter') tryAdminLogin()">
-          </div>
-          <button class="btn btn-primary" onclick="tryAdminLogin()" style="width:100%; justify-content:center;">دخول</button>
-        </div>
-      </div>
-
-      <div id="admin-panel" style="display:none;">
-        <div class="card-box">
-          <div class="admin-toolbar">
-            <h2 style="margin:0;">إدارة المنتجات <span id="prod-count" style="color:#8a6d3b; font-size:.9rem; font-weight:400;"></span></h2>
-            <button class="btn btn-ghost btn-sm" onclick="logoutAdmin()">تسجيل خروج</button>
-          </div>
-          <div class="admin-toolbar">
-            <input type="text" class="search-box" id="admin-search" placeholder="ابحث عن منتج بالاسم..." oninput="renderAdminTable()">
-            <select class="cat-filter" id="admin-cat-filter" onchange="renderAdminTable()"></select>
-          </div>
-          <p class="hint" style="text-align:right; margin-bottom:14px;">💡 لما ترفع صورة من جهازك بتنحفظ وتنعرض على طول بدون أي خطوة إضافية.</p>
-
-          <div style="overflow-x:auto;">
-            <table>
-              <thead>
-                <tr>
-                  <th>المنتج</th>
-                  <th>التصنيف</th>
-                  <th>السعر</th>
-                  <th>الوحدة</th>
-                  <th>إجراءات</th>
-                </tr>
-              </thead>
-              <tbody id="admin-table-body"></tbody>
-            </table>
-          </div>
-
-          <div class="add-form">
-            <div class="field">
-              <label>اسم منتج جديد</label>
-              <input type="text" id="new-name" placeholder="مثال: جبنة نابلسي">
-            </div>
-            <div class="field">
-              <label>التصنيف</label>
-              <select id="new-cat-select" onchange="onNewCatSelectChange()"></select>
-              <input type="text" id="new-cat" placeholder="اكتب اسم التصنيف الجديد" style="margin-top:6px; display:none;">
-            </div>
-            <div class="field">
-              <label>السعر</label>
-              <input type="text" id="new-price" placeholder="0.00">
-            </div>
-            <div class="field">
-              <label>صورة المنتج</label>
-              <div class="upload-row">
-                <img id="new-img-preview" class="prod-thumb" src="logo.jpeg" style="opacity:.4;">
-                <label class="btn btn-ghost btn-sm" for="new-img-file" style="cursor:pointer;">📷 اختر صورة</label>
-                <input type="file" id="new-img-file" accept="image/*" style="display:none;" onchange="handleNewImageUpload(event)">
-              </div>
-            </div>
-            <button class="btn btn-primary btn-sm" onclick="addNewProduct()">+ إضافة</button>
-          </div>
-        </div>
-
-        <div class="card-box">
-          <h2>تغيير كلمة سر الأدمن</h2>
-          <p class="sub">هاي الحماية بسيطة (محفوظة بالمتصفح) وما بتغني عن حماية سيرفر حقيقية.</p>
-          <div class="field" style="max-width:320px;">
-            <label>كلمة السر الجديدة</label>
-            <input type="text" id="new-admin-pass" placeholder="كلمة سر جديدة">
-          </div>
-          <button class="btn btn-ghost btn-sm" onclick="changeAdminPass()">تحديث كلمة السر</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
+<div class="tabs">
+<button class="tab-btn active" data-tab="prefs">🎨 الإعدادات</button>
+<button class="tab-btn" data-tab="admin">🔐 لوحة المنتجات</button>
 </div>
-
+<div class="content">
+<!-- ============ تبويب: الإعدادات (تفضيلات العرض) ============ -->
+<div class="panel active" id="panel-prefs">
+<div class="card-box">
+<h2>تفضيلات العرض</h2>
+<p class="sub">هاي الإعدادات خاصة فيك وبتنحفظ على هالمتصفح بس.</p>
+<div class="pref-row">
+<div class="pref-info">
+<b>الوضع الليلي</b>
+<span>خلفية داكنة مريحة للعين وقت الليل</span>
+</div>
+<label class="switch">
+<input id="pref-dark" onchange="savePrefsFromUI()" type="checkbox"/>
+<span class="slider-toggle"></span>
+</label>
+</div>
+<div class="pref-row">
+<div class="pref-info">
+<b>التباين العالي</b>
+<span>ألوان أوضح وأكثر تباينًا لسهولة القراءة</span>
+</div>
+<label class="switch">
+<input id="pref-contrast" onchange="savePrefsFromUI()" type="checkbox"/>
+<span class="slider-toggle"></span>
+</label>
+</div>
+<div class="pref-row">
+<div class="pref-info">
+<b>حجم الخط</b>
+<span>كبّر أو صغّر حجم النص بكل الموقع</span>
+</div>
+<div class="seg" id="font-seg">
+<button data-size="small" onclick="setFontSize('small')">صغير</button>
+<button data-size="medium" onclick="setFontSize('medium')">متوسط</button>
+<button data-size="large" onclick="setFontSize('large')">كبير</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ============ تبويب: لوحة المنتجات (أدمن) ============ -->
+<div class="panel" id="panel-admin">
+<div class="card-box" id="admin-lock">
+<div class="lock-box">
+<div class="icon">🔒</div>
+<h2>دخول الأدمن</h2>
+<p class="sub">هاد القسم محمي — لإدارة المنتجات والأسعار لازم كلمة السر.</p>
+<div class="field">
+<input id="admin-pass-input" onkeydown="if(event.key==='Enter') tryAdminLogin()" placeholder="كلمة السر" type="text"/>
+</div>
+<button class="btn btn-primary" onclick="tryAdminLogin()" style="width:100%; justify-content:center;">دخول</button>
+</div>
+</div>
+<div id="admin-panel" style="display:none;">
+<div class="card-box">
+<div class="admin-toolbar">
+<h2 style="margin:0;">إدارة المنتجات <span id="prod-count" style="color:#8a6d3b; font-size:.9rem; font-weight:400;"></span></h2>
+<button class="btn btn-ghost btn-sm" onclick="logoutAdmin()">تسجيل خروج</button>
+</div>
+<div class="admin-toolbar">
+<input class="search-box" id="admin-search" oninput="renderAdminTable()" placeholder="ابحث عن منتج بالاسم..." type="text"/>
+<select class="cat-filter" id="admin-cat-filter" onchange="renderAdminTable()"></select>
+</div>
+<p class="hint" style="text-align:right; margin-bottom:14px;">💡 لما ترفع صورة من جهازك بتنحفظ وتنعرض على طول بدون أي خطوة إضافية.</p>
+<div style="overflow-x:auto;">
+<table>
+<thead>
+<tr>
+<th>المنتج</th>
+<th>التصنيف</th>
+<th>السعر</th>
+<th>الوحدة</th>
+<th>إجراءات</th>
+</tr>
+</thead>
+<tbody id="admin-table-body"></tbody>
+</table>
+</div>
+<div class="add-form">
+<div class="field">
+<label>اسم منتج جديد</label>
+<input id="new-name" placeholder="مثال: جبنة نابلسي" type="text"/>
+</div>
+<div class="field">
+<label>التصنيف</label>
+<select id="new-cat-select" onchange="onNewCatSelectChange()"></select>
+<input id="new-cat" placeholder="اكتب اسم التصنيف الجديد" style="margin-top:6px; display:none;" type="text"/>
+</div>
+<div class="field">
+<label>السعر</label>
+<input id="new-price" placeholder="0.00" type="text"/>
+</div>
+<div class="field">
+<label>صورة المنتج</label>
+<div class="upload-row">
+<img class="prod-thumb" id="new-img-preview" src="logo.jpeg" style="opacity:.4;"/>
+<label class="btn btn-ghost btn-sm" for="new-img-file" style="cursor:pointer;">📷 اختر صورة</label>
+<input accept="image/*" id="new-img-file" onchange="handleNewImageUpload(event)" style="display:none;" type="file"/>
+</div>
+</div>
+<button class="btn btn-primary btn-sm" onclick="addNewProduct()">+ إضافة</button>
+</div>
+</div>
+<div class="card-box">
+<h2>تغيير كلمة سر الأدمن</h2>
+<p class="sub">هاي الحماية بسيطة (محفوظة بالمتصفح) وما بتغني عن حماية سيرفر حقيقية.</p>
+<div class="field" style="max-width:320px;">
+<label>كلمة السر الجديدة</label>
+<input id="new-admin-pass" placeholder="كلمة سر جديدة" type="text"/>
+</div>
+<button class="btn btn-ghost btn-sm" onclick="changeAdminPass()">تحديث كلمة السر</button>
+</div>
+</div>
+</div>
+</div>
+</div>
 <footer class="settings-footer">
   ✔ أي تعديل من هون (منتجات، أسعار...) ينحفظ مباشرة ويظهر لكل زوار الموقع تلقائيًا.
 </footer>
-
 <div class="toast" id="toast"></div>
-
 <script src="products-data.js"></script>
 <script src="site-settings.js"></script>
 <script>
@@ -673,6 +656,5 @@ async function initAll(){
 }
 initAll();
 </script>
-
 </body>
 </html>
