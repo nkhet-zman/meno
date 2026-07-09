@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nkhet-zman.github.io/meno/sitemap.xml
+Sitemap: https://alisehweil34-netizen.github.io/nkhet-zman/sitemap.xml
